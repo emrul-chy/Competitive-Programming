@@ -1,55 +1,78 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <vector>
+
 using namespace std;
-int is_prime(int n)
-{
-    int i, r;
-    r = sqrt(n);
-    if(n == 1 || n == 0)
-    {
-        return 0;
-    }
-    for(i=2; i<=r ; i++)
-    {
-        if(n % i == 0)
-        {
-            return 0;
-        }
-    }
-    if(n % 2 == 1)
-    {
-        return 1;
-    }
-    return 0;
-}
+
 int main()
 {
-    int n,k;
-    while(scanf("%d", &n)==1)
+    vector<int> prime(4792);
+    vector<bool> p(46340, true);
+
+    prime[0] = 2;
+    int x(1);
+
+    for (long long i = 3; i < 46340; i += 2)
     {
-        if(n == 0)
+        if (p[i])
         {
-            break;
-        }
-        int i, j, a=0, b=0, c = 0;;
-        for(i=1; i<=n/2; i++)
-        {
-            j = n - i;
-            if(is_prime(i)==1 && is_prime(j) == 1)
+            for (long long j = i * i; j < 46340; j += i)
             {
-                a = min(i,j);
-                b = max(i,j);
-                c = 1;
-                break;
+                p[j] = false;
             }
-        }
-        if(c == 0)
-        {
-            printf("Goldbach's conjecture is wrong.\n");
-        }
-        else
-        {
-            printf("%d = %d + %d\n", n, a, b);
+
+            prime[x] = i;
+            ++x;
         }
     }
-    return 0;
+
+    int n;
+    while (scanf("%d", &n), n != 0)
+    {
+        printf("%d =", n);
+
+        int flg = 0;
+
+
+        if (n < 0)
+        {
+            n *= -1;
+            printf(" -1");
+            flg = true;
+        }
+
+        else if (n == 1)
+        {
+            printf(" 1");
+        }
+        for (int x = 0; prime[x] * prime[x] <= n && x < 4792; ++x)
+        {
+            while (n % prime[x] == 0)
+            {
+                if (flg==1)
+                {
+                    printf(" x %d", prime[x]);
+                }
+                else
+                {
+                    printf(" %d", prime[x]);
+                }
+                flg = 1;
+                n /= prime[x];
+            }
+        }
+
+        if (n > 1)
+        {
+            if (flg == 1)
+            {
+                printf(" x %d", n);
+            }
+            else
+            {
+                printf(" %d", n);
+            }
+        }
+
+        printf("\n");
+    }
 }
