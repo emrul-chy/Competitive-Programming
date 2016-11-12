@@ -1,26 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
-long long a[100000000], i, j, x=2, y=2, b[100000000];
+
 int main()
 {
+    int a, b, T, i, f, j, ar[] = {1, 9, 45, 55, 99, 297, 703, 999, 2223, 2728, 4879, 4950, 5050, 5292, 7272, 7777, 9999, 17344, 22222, 38962};
+    cin >> T;
 
-    a[1] = 1;
-    b[1] = 1;
-    for(i=2; i<=10000; i++)
+    for(j=1; j <= T; j++)
     {
-        for(j=i; j>=1; j--)
+        cin >> a >> b;
+        f = 0;
+        printf("case #%d\n", j);
+
+        for(i=0; i<20; i++)
         {
-            a[x++] = j;
+            if(ar[i] >= a && ar[i] <= b)
+            {
+                printf("%d\n", ar[i]);
+                f = 1;
+            }
         }
-        for(j=1; j<=i; j++)
+        if(f == 0)
         {
-            b[y++] = j;
+            printf("no kaprekar numbers\n");
         }
-    }
-    int n;
-    while(cin >> n)
-    {
-        cout << a[n] << "/" << b[n] << endl;
+        if(j != T)
+        {
+            printf("\n");
+        }
     }
     return 0;
 }
