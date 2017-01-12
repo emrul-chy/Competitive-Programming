@@ -1,0 +1,83 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n, f = 0;
+
+    while(cin >> n)
+    {
+        int a[n][n];
+        if(f == 1)
+        {
+            puts("");
+        }
+        f = 1;
+        memset(a, 0, sizeof(a));
+        cout << "n=" << n << ", sum=" << n*(n*n+1)/2 << endl;
+        int r, c, x =0, y = n / 2, i, j, t;
+        for (int t = 1; t <= n*n; t++ )
+        {
+            if(a[x][y])
+            {
+                x += 2, y--;
+                if(x >= n)
+                {
+                    x -= n;
+                }
+                if(y < 0)
+                {
+                    y += n;
+                }
+                a[x][y] = t;
+            }
+            else
+            {
+                a[x][y] = t;
+            }
+            x--, y++;
+            if(x < 0)
+            {
+                x += n;
+            }
+            if(y >= n)
+            {
+                y -= n;
+            }
+        }
+        if(n*n <= 9)
+        {
+            for(x=0; x<n; x++)
+            {
+                for(y=0; y<n; y++)
+                {
+                    printf("%2d", a[x][y]);
+                }
+                printf("\n");
+            }
+        }
+        else if(n*n <= 100)
+        {
+            for(x=0; x<n; x++)
+            {
+                for(y=0; y<n; y++)
+                {
+                    printf("%3d", a[x][y]);
+                }
+                printf("\n");
+            }
+        }
+        else
+        {
+            for(x=0; x<n; x++)
+            {
+                for(y=0; y<n; y++)
+                {
+                    printf("%4d", a[x][y]);
+                }
+                printf("\n");
+            }
+        }
+    }
+    return 0;
+}
