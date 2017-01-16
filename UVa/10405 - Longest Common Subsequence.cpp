@@ -1,41 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int l[1001][1001];
+int dp[1005][1005];
+
+string s1, s2;
+
+int lcs(int i, int j)
+{
+    if(s1[i-1] == s2[j-1])
+    {
+        return dp[i-1][j-1]+1;
+    }
+    else
+    {
+        if(dp[i-1][j] == dp[i][j-1])
+        {
+            return dp[i][j-1];
+        }
+        return max(dp[i-1][j], dp[i][j-1]);
+    }
+}
 
 int main()
 {
-    int n, m, i, j;
-    string s1,s2;
-
     while(getline(cin, s1))
     {
         getline(cin, s2);
+        
+        memset(dp, 0, sizeof dp);
+        
+        int i, j, n, m;
         n = s1.size();
         m = s2.size();
-
-        for(i=n; i>=0; i--)
+        
+        for(i=1; i<=n; i++)
         {
-            for(j=m; j>=0; j--)
+            for(j=1; j<=m; j++)
             {
-                if(i==n || j==m)
-                {
-                    l[i][j]=0;
-                    continue;
-                }
-                if(s1[i] == s2[j])
-                {
-                    l[i][j] = 1+l[i+1][j+1];
-                }
-                else
-                {
-                    l[i][j] = max(l[i+1][j], l[i][j+1]);
-                }
+                dp[i][j] = lcs(i, j);
             }
         }
-
-        printf("%d\n",l[0][0]);
+        
+        printf("%d\n", dp[n][m]);
     }
-
     return 0;
 }
