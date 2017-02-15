@@ -10,10 +10,6 @@ int y[] = {1, -1, 0, 0, 1, -1, 1, -1};
 
 void DFS(int i, int j)
 {
-    if(vist[i][j])
-    {
-        return;
-    }
     vist[i][j] = 1;
     for(int k = 0; k < 8; k++)
     {
