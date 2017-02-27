@@ -26,7 +26,7 @@ int main()
         v[ s.size() ].push_back(s);
     }
     
-    sort( v1.begin(), v1.end());
+    sort( v1.begin(), v1.end() );
     
     for( i=0; i<v1.size(); i++)
     {
