@@ -28,7 +28,7 @@ int main()
     
     sort( v1.begin(), v1.end() );
     
-    for( i=0; i<v1.size(); i++)
+    for( i=0; i<v1.size(); i++ )
     {
         sort( v[v1[i]].begin(), v[v1[i]].end() );
         for( LL j=0; j<v[v1[i]].size(); j++ )
