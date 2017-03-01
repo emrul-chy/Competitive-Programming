@@ -1,3 +1,3 @@
 # Competitive-Programming
 
-<u> Emrul </u>
+<b> Emrul </b>
