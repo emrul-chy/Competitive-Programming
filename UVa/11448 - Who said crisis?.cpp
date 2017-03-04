@@ -47,7 +47,7 @@ int cmp(string a, string b)
     }
     if(a.size() < b.size())
     {
-        return 2;
+        return -1;
     }
     else
     {
@@ -56,7 +56,7 @@ int cmp(string a, string b)
             if(a[i] > b[i])
                 return 1;
             if(b[i] > a[i])
-                return 2;
+                return -1;
         }
         return 0;
     }
@@ -75,7 +75,7 @@ int main()
             printf("0\n");
             continue;
         }
-        if(cmp(a, b) == 2)
+        if(cmp(a, b) == -1)
         {
             printf("-");
             swap(a, b);
