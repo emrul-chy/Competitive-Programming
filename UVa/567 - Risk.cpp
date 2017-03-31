@@ -38,12 +38,14 @@ void init()
 bool read()
 {
     init();
-    int m, x, i;
-    while(scanf("%d", &m) == 1)
-    {
-        
-    }
-    for(i=1; i<=19; i++)
+    int m, x;
+    string s;
+    cin >> s;
+    if(s == "\0")
+        return false;
+    else
+        m = atoi(s.c_str());
+    for(int i=1; i<=19; i++)
     {
         if(i != 1)
         scanf("%d", &m);
